@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(215, 28%, 9%);
+  --foreground: hsl(213, 31%, 91%);
+  --card: hsl(215, 28%, 11%);
+  --card-foreground: hsl(213, 31%, 91%);
+  --popover: hsl(215, 28%, 11%);
+  --popover-foreground: hsl(213, 31%, 91%);
+  --primary: hsl(45, 93%, 50%);
+  --primary-foreground: hsl(215, 28%, 9%);
+  --secondary: hsl(215, 25%, 15%);
+  --secondary-foreground: hsl(213, 31%, 91%);
+  --muted: hsl(215, 25%, 15%);
+  --muted-foreground: hsl(213, 20%, 60%);
+  --accent: hsl(213, 93%, 68%);
+  --accent-foreground: hsl(215, 28%, 9%);
+  --destructive: hsl(0, 75%, 60%);
+  --destructive-foreground: hsl(213, 31%, 91%);
+  --border: hsl(215, 20%, 20%);
+  --input: hsl(215, 20%, 20%);
+  --ring: hsl(213, 93%, 68%);
+  --chart-1: hsl(45, 93%, 50%);
+  --chart-2: hsl(213, 93%, 68%);
+  --chart-3: hsl(165, 93%, 68%);
+  --chart-4: hsl(285, 93%, 68%);
+  --chart-5: hsl(15, 93%, 68%);
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-display: Satoshi, Inter, system-ui, sans-serif;
+  --font-mono: JetBrains Mono, Consolas, monospace;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(215, 28%, 9%);
+  --foreground: hsl(213, 31%, 91%);
+  --card: hsl(215, 28%, 11%);
+  --card-foreground: hsl(213, 31%, 91%);
+  --popover: hsl(215, 28%, 11%);
+  --popover-foreground: hsl(213, 31%, 91%);
+  --primary: hsl(45, 93%, 50%);
+  --primary-foreground: hsl(215, 28%, 9%);
+  --secondary: hsl(215, 25%, 15%);
+  --secondary-foreground: hsl(213, 31%, 91%);
+  --muted: hsl(215, 25%, 15%);
+  --muted-foreground: hsl(213, 20%, 60%);
+  --accent: hsl(213, 93%, 68%);
+  --accent-foreground: hsl(215, 28%, 9%);
+  --destructive: hsl(0, 75%, 60%);
+  --destructive-foreground: hsl(213, 31%, 91%);
+  --border: hsl(215, 20%, 20%);
+  --input: hsl(215, 20%, 20%);
+  --ring: hsl(213, 93%, 68%);
+  --chart-1: hsl(45, 93%, 50%);
+  --chart-2: hsl(213, 93%, 68%);
+  --chart-3: hsl(165, 93%, 68%);
+  --chart-4: hsl(285, 93%, 68%);
+  --chart-5: hsl(15, 93%, 68%);
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-display: Satoshi, Inter, system-ui, sans-serif;
+  --font-mono: JetBrains Mono, Consolas, monospace;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Custom utility classes */
+.glass {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, hsl(45, 93%, 50%), hsl(213, 93%, 68%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: rgba(15, 20, 25, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  background: hsl(215, 28%, 11%);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 40;
+}
+
+.main-content {
+  margin-left: 280px;
+  margin-top: 70px;
+  min-height: calc(100vh - 70px);
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+/* Animation utilities */
+@keyframes countUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.animate-counter {
+  animation: countUp 2s ease-out forwards;
+}
+
+/* Dashboard specific styles */
+.dashboard-card {
+  @apply bg-card border border-border rounded-xl p-6 hover-lift;
+}
+
+.metric-card {
+  @apply dashboard-card flex items-center justify-between;
+}
+
+.nav-item {
+  @apply flex items-center space-x-3 px-3 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors;
+}
+
+.nav-item-active {
+  @apply nav-item text-primary;
+  background-color: hsl(var(--primary) / 0.2);
+}
